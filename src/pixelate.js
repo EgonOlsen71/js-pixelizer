@@ -51,6 +51,7 @@ function calculate(imgData, size, colors, boost) {
 	var cols=new Map();
 	var pix=new Array(Math.round((imgData.width*imgData.height*6)/size));
 	var pos=0;
+	var d=size*size;
 	for (var x = 0; x < imgData.width; x=x+size) {
 		for (var y = 0; y < imgData.height; y=y+size) {
 			var avgr=0;
@@ -68,7 +69,6 @@ function calculate(imgData, size, colors, boost) {
 					avga+= imgData.data[offset + 3];
 				}
 			}
-			var d=size*size;
 			avga=(Math.round(avga/d) & 255);
 			avgt=255/avga;
 			avgr=Math.round(avgr*avgt/d) & 255;
