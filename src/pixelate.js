@@ -58,10 +58,9 @@ function calculate(imgData, size, colors, boost) {
 			var avgb=0;
 			var avga=0;
 			for (var x1=x; x1<x+size; x1++) {
+				var xd=Math.min(x1,imgData.width-1);
 				for (var y1=y; y1<y+size; y1++) {
-					var xd=x1;
 					var yd=Math.min(y1,imgData.height-1);
-					var xd=Math.min(x1,imgData.width-1);
 					var offset = (imgData.width * yd + xd) << 2;
 					avgr+= imgData.data[offset];
 					avgg+= imgData.data[offset + 1];
