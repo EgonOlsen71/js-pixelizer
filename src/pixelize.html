@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="pixelate.js" ></script>
+		<script>
+			function render() {
+				var cols=document.getElementById("colors").options[document.getElementById("colors").selectedIndex].value;
+				var size=document.getElementById("size").options[document.getElementById("size").selectedIndex].value;
+				var mode=document.getElementById("mode").options[document.getElementById("mode").selectedIndex].value;
+				pixelate(document.getElementById("orig"), document.getElementById("test"), parseInt(size, 10), parseInt(cols, 10) , parseInt(mode, 10));
+			}
+			
+			function next() {
+				image++;
+				if (image>8) {
+					image=1;
+				}
+				document.getElementById("orig").src="example"+image+".jpg";
+				document.getElementById("test").src="example"+image+".jpg";
+				render();
+			}
+			
+			var image=1;
+		</script>
+	</head>
+	<body>
+		<label for="size">Blocksize</label>
+		<select onchange="render()" name="size" id="size">
+			<option value="2">2</option>
+			<option value="4" selected>4</option>
+			<option value="8">8</option>
+			<option value="16">16</option>
+			<option value="32">32</option>
+			<option value="64">64</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;
+		<label for="colors"># of Colors</label>
+		<select onchange="render()" name="colors" id="colors">
+			<option value="256">256</option>
+			<option value="128">128</option>
+			<option value="64">64</option>
+			<option value="32" selected>32</option>
+			<option value="16">16</option>
+			<option value="8">8</option>
+			<option value="4">4</option>
+			<option value="2">2</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;
+		<label for="mode">Mode</label>
+		<select onchange="render()" name="mode" id="mode">
+			<option value="0">Linear</option>
+			<option value="1">Quadratic</option>
+			<option value="2" selected>Logarithmic</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;
+		<input type="button" onclick="render()" value="Re-Render"/>
+		&nbsp;&nbsp;&nbsp;
+		<input type="button" onclick="next()" value="> next image"/>
+		<br/><br/>
+		<img id="test" src="example1.jpg"/>
+		<img onload="render()"  id="orig" src="example1.jpg"/>		
+	</body>
+</html>
